@@ -335,7 +335,8 @@ class TuneBaseSearchCV(BaseSearchCV):
                  pipeline_auto_early_stop=True,
                  stopper=None,
                  time_budget_s=None,
-                 mode=None):
+                 mode=None,
+                 logger_kwargs=None):
         if max_iters < 1:
             raise ValueError("max_iters must be greater than or equal to 1.")
         self.estimator = estimator
@@ -343,7 +344,7 @@ class TuneBaseSearchCV(BaseSearchCV):
         self.pipeline_auto_early_stop = pipeline_auto_early_stop
         self.stopper = stopper
         self.time_budget_s = time_budget_s
-
+        self.logger_kwargs = logger_kwargs
         if mode:
             assert mode in ["min", "max"], "`mode` must be 'min' or 'max'."
         self.mode = mode or DEFAULT_MODE
