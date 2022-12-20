@@ -270,7 +270,7 @@ def _check_param_grid_tune_grid_search(param_grid):
                                  "to be a non-empty sequence.".format(name))
 
 
-def resolve_logger_callbacks(loggers, defined_loggers) -> List[Callback]:
+def resolve_logger_callbacks(loggers, defined_loggers, logger_kwargs) -> List[Callback]:
     init_loggers = {JsonLoggerCallback(), CSVLoggerCallback()}
     if loggers is None:
         return list(init_loggers)
@@ -286,7 +286,7 @@ def resolve_logger_callbacks(loggers, defined_loggers) -> List[Callback]:
             elif log == "csv":
                 init_loggers.add(CSVLoggerCallback())
             elif log == "mlflow":
-                init_loggers.add(MLflowLoggerCallback())
+                init_loggers.add(MLflowLoggerCallback(**logger_kwargs))
             elif log == "json":
                 init_loggers.add(JsonLoggerCallback())
             else:
