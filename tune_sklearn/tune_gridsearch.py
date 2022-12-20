@@ -166,7 +166,8 @@ class TuneGridSearchCV(TuneBaseSearchCV):
                  stopper=None,
                  time_budget_s=None,
                  sk_n_jobs=None,
-                 mode=None):
+                 mode=None,
+                 logger_kwargs=None):
         if sk_n_jobs not in (None, 1):
             raise ValueError(
                 "Tune-sklearn no longer supports nested parallelism "
@@ -189,7 +190,8 @@ class TuneGridSearchCV(TuneBaseSearchCV):
             pipeline_auto_early_stop=pipeline_auto_early_stop,
             stopper=stopper,
             time_budget_s=time_budget_s,
-            mode=mode)
+            mode=mode,
+            logger_kwargs = logger_kwargs)
 
         check_error_warm_start(self.early_stop_type, param_grid, estimator)
 
@@ -286,7 +288,8 @@ class TuneGridSearchCV(TuneBaseSearchCV):
             local_dir=self.local_dir,
             name=self.name,
             callbacks=resolve_logger_callbacks(self.loggers,
-                                               self.defined_loggers),
+                                               self.defined_loggers,
+                                               self.logger_kwargs),
             time_budget_s=self.time_budget_s,
             metric=self._metric_name,
             mode=self.mode)
