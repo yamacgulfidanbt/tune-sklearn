@@ -22,11 +22,8 @@ Check out our [API Documentation](https://docs.ray.io/en/master/tune/api_docs/sk
 
 ### User Installation
 
-`pip install tune-sklearn ray[tune]`
 
-or
-
-`pip install -U git+https://github.com/ray-project/tune-sklearn.git && pip install 'ray[tune]'`
+`pip install -U git+https://github.com/yamacgulfidanbt/tune-sklearn.git'`
 
 
 ### Tune-sklearn Early Stopping
